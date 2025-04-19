@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Módulo Coordinación - Saber Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #eaeaea;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f1f3f5;
+            font-weight: 600;
+            color: #555;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #2e86de;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 5px 20px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1e6fbf;
+        }
+
+        #formEditar {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin-top: 30px;
+        }
+
+        label {
+            font-weight: 500;
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1 1 45%;
+        }
+
+        #resultadoAlumno {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+	<button onclick="cerrarSesion()" style="float: right; margin-bottom: 20px;">Cerrar sesión</button>
+
+    <h1>Módulo de Coordinación - Saber Pro</h1>
+
+    <h2>Informe de Todos los Alumnos</h2>
+	
+    <button onclick="listarAlumnos()">Cargar Alumnos</button>
+	<button type="button" class="coordinacion-btn" onclick="window.location.href='alumno.html';">Ir a Crear Alummno</button>
+
+    <table id="tablaAlumnos">
+        <thead>
+            <tr>
+                <th>Tipo Doc</th>
+                <th>Doc</th>
+                <th>Nombre Completo</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th># Registro</th>
+                <th>Puntaje Total</th>
+                <th>Nivel Saber Pro</th>
+                <th>Media Nacional</th>
+                <th>Com. Escrita</th>
+                <th>Nivel</th>
+                <th>Raz. Cuant.</th>
+                <th>Nivel</th>
+                <th>Lectura Crítica</th>
+                <th>Nivel</th>
+                <th>Comp. Ciudadanas</th>
+                <th>Nivel</th>
+                <th>Inglés</th>
+                <th>Nivel</th>
+                <th>Proyectos Ing</th>
+                <th>Nivel</th>
+                <th>Pen. Científico</th>
+                <th>Nivel</th>
+                <th>Diseño SW</th>
+                <th>Nivel</th>
+                <th>Nivel Inglés</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Informe Individual (Ranking)</h2>
+    <input type="text" id="documentoBuscar" placeholder="Número de documento del estudiante">
+    <button onclick="buscarAlumno()">Buscar</button>
+
+    <form id="formEditar" onsubmit="guardarCambios(event)" style="display: none;">
+        <h2>Editar Alumno</h2>
+        <input type="hidden" id="editId">
+
+        <div class="form-row">
+            <div class="form-group"><label>Tipo Documento:</label><input type="text" id="editTipoDocumento"></div>
+            <div class="form-group"><label>Número Documento:</label><input type="text" id="editNumeroDocumento"></div>
+            <div class="form-group"><label>Primer Nombre:</label><input type="text" id="editPrimerNombre"></div>
+            <div class="form-group"><label>Segundo Nombre:</label><input type="text" id="editSegundoNombre"></div>
+            <div class="form-group"><label>Primer Apellido:</label><input type="text" id="editPrimerApellido"></div>
+            <div class="form-group"><label>Segundo Apellido:</label><input type="text" id="editSegundoApellido"></div>
+            <div class="form-group"><label>Email:</label><input type="email" id="editCorreo"></div>
+            <div class="form-group"><label>Teléfono:</label><input type="text" id="editTelefono"></div>
+            <div class="form-group"><label># Registro:</label><input type="text" id="editNumeroRegistro"></div>
+            <div class="form-group"><label>Puntaje Total:</label><input type="number" id="editPuntaje" step="0.01"></div>
+            <div class="form-group"><label>Nivel Saber Pro:</label><input type="text" id="editSaberProPuntajeNivel"></div>
+            <div class="form-group"><label>Media Nacional:</label><input type="text" id="editMediaNacional"></div>
+            <div class="form-group"><label>Com. Escrita:</label><input type="number" id="editComunicacionEscrita" step="0.01"></div>
+            <div class="form-group"><label>Nivel:</label><input type="text" id="editComunicacionEscritaNivel"></div>
+            <div class="form-group"><label>Raz. Cuant.:</label><input type="number" id="editRazonamientoCuantitativo" step="0.01"></div>
+            <div class="form-group"><label>Nivel:</label><input type="text" id="editRazonamientoCuantitativoNivel"></div>
+            <div class="form-group"><label>Lectura Crítica:</label><input type="number" id="editLecturaCritica" step="0.01"></div>
+            <div class="form-group"><label>Nivel:</label><input type="text" id="editLecturaCriticaNivel"></div>
+            <div class="form-group"><label>Comp. Ciudadanas:</label><input type="number" id="editCompetenciasCiudadanas" step="0.01"></div>
+            <div class="form-group"><label>Nivel:</label><input type="text" id="editCompetenciasCiudadanasNivel"></div>
+            <div class="form-group"><label>Inglés:</label><input type="number" id="editIngles" step="0.01"></div>
+            <div class="form-group"><label>Nivel:</label><input type="text" id="editInglesNivel"></div>
+            <div class="form-group"><label>Proyectos Ing:</label><input type="number" id="editFormulacionDeProyectosDeIngenieria" step="0.01"></div>
+            <div class="form-group"><label>Nivel:</label><input type="text" id="editFormulacionDeProyectosDeIngenieriaNivel"></div>
+            <div class="form-group"><label>Pen. Científico:</label><input type="number" id="editPensamientoCientificoMatematicasYEstadistica" step="0.01"></div>
+            <div class="form-group"><label>Nivel:</label><input type="text" id="editPensamientoCientificoMatematicasYEstadisticaNivel"></div>
+            <div class="form-group"><label>Diseño SW:</label><input type="number" id="editDisenoDeSoftware" step="0.01"></div>
+            <div class="form-group"><label>Nivel:</label><input type="text" id="editDisenoDeSoftwareNivel"></div>
+            <div class="form-group"><label>Nivel Inglés:</label><input type="text" id="editNivelIngles"></div>
+        </div>
+
+        <button type="submit">Guardar Cambios</button>
+        <button type="button" onclick="cancelarEdicion()">Cancelar</button>
+    </form>
+
+    <div id="resultadoAlumno"></div>
+
+    <script src="js/coordinacion.js"></script>
+	<script>	function cerrarSesion() {
+	  localStorage.clear();
+	  window.location.href = "index.html";
+	}
+</script>
+</body>
+</html>

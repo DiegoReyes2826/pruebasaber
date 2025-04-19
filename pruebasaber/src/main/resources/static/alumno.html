@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Alumno Saber Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --success-color: #28a745;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .form-header {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .form-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Formulario */
+        .form-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            background-color: white;
+        }
+
+        /* Secciones del formulario */
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 20px;
+            background-color: var(--primary-color);
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        /* Botones */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 25px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1 class="form-title">Formulario de Registro de Alumno</h1>
+            <p>Saber Pro - Sistema de Gestión Académica</p>
+        </div>
+
+        <form id="alumnoForm" class="form-container">
+            <!-- Sección de información personal -->
+            <div class="form-section">
+                <h2 class="section-title">Información Personal</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Tipo de Documento</label>
+                        <input type="text" name="tipoDocumento" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Documento</label>
+                        <input type="text" name="numeroDocumento" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Primer Apellido</label>
+                        <input type="text" name="primerApellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo Apellido</label>
+                        <input type="text" name="segundoApellido">
+                    </div>
+                    <div class="form-group">
+                        <label>Primer Nombre</label>
+                        <input type="text" name="primerNombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Segundo Nombre</label>
+                        <input type="text" name="segundoNombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" name="correoElectronico">
+                    </div>
+                    <div class="form-group">
+                        <label>Número Telefónico</label>
+                        <input type="text" name="numeroTelefonico">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Registro</label>
+                        <input type="text" name="numeroRegistro">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de resultados generales -->
+            <div class="form-section">
+                <h2 class="section-title">Resultados Generales</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Puntaje Total</label>
+                        <input type="number" name="puntaje">
+                    </div>
+                    <div class="form-group">
+                        <label>Saber Pro Puntaje Nivel</label>
+                        <input type="text" name="saberProPuntajeNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Media Nacional >125 (Aprobado o Reprobado UTS)</label>
+                        <input type="text" name="mediaNacional">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de competencias específicas -->
+            <div class="form-section">
+                <h2 class="section-title">Competencias Específicas</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Comunicación Escrita</label>
+                        <input type="number" name="comunicacionEscrita">
+                    </div>
+                    <div class="form-group">
+                        <label>Comunicación Escrita Nivel</label>
+                        <input type="text" name="comunicacionEscritaNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Razonamiento Cuantitativo</label>
+                        <input type="number" name="razonamientoCuantitativo">
+                    </div>
+                    <div class="form-group">
+                        <label>Razonamiento Cuantitativo Nivel</label>
+                        <input type="text" name="razonamientoCuantitativoNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Lectura Crítica</label>
+                        <input type="number" name="lecturaCritica">
+                    </div>
+                    <div class="form-group">
+                        <label>Lectura Crítica Nivel</label>
+                        <input type="text" name="lecturaCriticaNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Competencias Ciudadanas</label>
+                        <input type="number" name="competenciasCiudadanas">
+                    </div>
+                    <div class="form-group">
+                        <label>Competencias Ciudadanas Nivel</label>
+                        <input type="text" name="competenciasCiudadanasNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Inglés</label>
+                        <input type="number" name="ingles">
+                    </div>
+                    <div class="form-group">
+                        <label>Inglés Nivel</label>
+                        <input type="text" name="inglesNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Formulación De Proyectos De Ingeniería</label>
+                        <input type="number" name="formulacionDeProyectosDeIngenieria">
+                    </div>
+                    <div class="form-group">
+                        <label>Formulación De Proyectos Nivel</label>
+                        <input type="text" name="formulacionDeProyectosDeIngenieriaNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Pensamiento Científico - Matemáticas Y Estadística</label>
+                        <input type="number" name="pensamientoCientificoMatematicasYEstadistica">
+                    </div>
+                    <div class="form-group">
+                        <label>Pensamiento Científico Nivel</label>
+                        <input type="text" name="pensamientoCientificoMatematicasYEstadisticaNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Diseño De Software</label>
+                        <input type="number" name="disenoDeSoftware">
+                    </div>
+                    <div class="form-group">
+                        <label>Diseño De Software Nivel</label>
+                        <input type="text" name="disenoDeSoftwareNivel">
+                    </div>
+                    <div class="form-group">
+                        <label>Nivel de Inglés Global</label>
+                        <input type="text" name="nivelIngles">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Guardar Alumno
+                </button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='coordinacion.html';">
+                    <i class="fas fa-arrow-left"></i> Ir a Coordinación
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('alumnoForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const alumno = {};
+            formData.forEach((value, key) => alumno[key] = value);
+
+            fetch('/api/alumnos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(alumno)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Alumno guardado exitosamente');
+                    event.target.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al guardar alumno');
+                });
+        });
+    </script>
+    <!-- Font Awesome para iconos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>
