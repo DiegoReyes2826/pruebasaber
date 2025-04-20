@@ -1,5 +1,5 @@
 function listarAlumnos() {
-    fetch("http://localhost:8080/api/alumnos")
+    fetch("http://localhost:8105/api/alumnos")
         .then(response => response.json())
         .then(alumnos => {
             const tbody = document.querySelector("#tablaAlumnos tbody");
@@ -57,7 +57,7 @@ function buscarAlumno() {
         return;
     }
 
-    fetch(`http://localhost:8080/api/alumnos/documento/${numeroDocumento}`)
+    fetch(`http://localhost:8105/api/alumnos/documento/${numeroDocumento}`)
         .then(async response => {
             if (!response.ok) {
                 throw new Error("No existe un alumno con ese número de documento.");
@@ -110,7 +110,7 @@ function buscarAlumno() {
 
 
 function editarAlumno(id) {
-    fetch(`http://localhost:8080/api/alumnos/${id}`)
+    fetch(`http://localhost:8105/api/alumnos/${id}`)
         .then(res => res.json())
         .then(alumno => {
             document.getElementById("formEditar").style.display = "block";
@@ -186,7 +186,7 @@ function guardarCambios(event) {
         nivelIngles: document.getElementById("editNivelIngles").value
     };
 
-    fetch(`http://localhost:8080/api/alumnos/${id}`, {
+    fetch(`http://localhost:8105/api/alumnos/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(alumno)
@@ -209,7 +209,7 @@ function guardarCambios(event) {
 
 function eliminarAlumno(id) {
     if (confirm("¿Estás seguro de eliminar este alumno?")) {
-        fetch(`http://localhost:8080/api/alumnos/${id}`, {
+        fetch(`http://localhost:8105/api/alumnos/${id}`, {
             method: "DELETE"
         })
         .then(() => {
