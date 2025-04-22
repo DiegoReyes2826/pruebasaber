@@ -1,5 +1,5 @@
 function listarAlumnos() {
-    fetch("http://localhost:8105/api/alumnos")
+    fetch("https://pruebasaber-2.onrender.com/api/alumnos")
         .then(response => response.json())
         .then(alumnos => {
             const tbody = document.querySelector("#tablaAlumnos tbody");
