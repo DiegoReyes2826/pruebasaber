@@ -219,7 +219,7 @@
       const doc = document.getElementById("documentoEstudiante").value;
       if (!doc) return alert("Ingrese un documento válido.");
 
-      fetch(`http://localhost:8080/api/alumnos/documento/${doc}`)
+      fetch(`https://pruebasaber-2.onrender.com/api/alumnos/documento/${doc}`)
         .then(res => res.json())
         .then(alumno => {
           document.getElementById("datosIdentificacion").innerHTML = `
@@ -239,7 +239,7 @@
     }
 
     function cargarRanking(documento) {
-      fetch("http://localhost:8080/api/alumnos")
+      fetch("https://pruebasaber-2.onrender.com/api/alumnos")
         .then(res => res.json())
         .then(alumnos => {
           const tbody = document.querySelector("#tablaTotal tbody");
