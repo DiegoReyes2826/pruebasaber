@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8105/api/alumnos";
+const API_URL = "https://pruebasaber-2.onrender.com/api/alumnos";
 
 // Buscar resultado individual
 document.getElementById("buscarAlumnoForm").addEventListener("submit", function (e) {
