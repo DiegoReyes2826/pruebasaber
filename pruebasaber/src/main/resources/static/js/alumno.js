@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api/alumnos";
+const API_URL = "http://localhost:8105/api/alumnos";
 
 // Buscar resultado individual
 document.getElementById("buscarAlumnoForm").addEventListener("submit", function (e) {
