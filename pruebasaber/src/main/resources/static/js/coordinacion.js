@@ -57,7 +57,7 @@ function buscarAlumno() {
         return;
     }
 
-    fetch(`http://localhost:8105/api/alumnos/documento/${numeroDocumento}`)
+    fetch(`https://pruebasaber-2.onrender.com/api/alumnos/documento/${numeroDocumento}`)
         .then(async response => {
             if (!response.ok) {
                 throw new Error("No existe un alumno con ese número de documento.");
@@ -110,7 +110,7 @@ function buscarAlumno() {
 
 
 function editarAlumno(id) {
-    fetch(`http://localhost:8105/api/alumnos/${id}`)
+    fetch(`https://pruebasaber-2.onrender.com/api/alumnos/${id}`)
         .then(res => res.json())
         .then(alumno => {
             document.getElementById("formEditar").style.display = "block";
@@ -186,11 +186,13 @@ function guardarCambios(event) {
         nivelIngles: document.getElementById("editNivelIngles").value
     };
 
-    fetch(`http://localhost:8105/api/alumnos/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(alumno)
-    })
+   fetch(`https://pruebasaber-2.onrender.com/api/alumnos/${id}`, {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(alumno)
+})
     .then(response => {
         if (!response.ok) {
             throw new Error("Error en la actualización.");
@@ -209,7 +211,7 @@ function guardarCambios(event) {
 
 function eliminarAlumno(id) {
     if (confirm("¿Estás seguro de eliminar este alumno?")) {
-        fetch(`http://localhost:8105/api/alumnos/${id}`, {
+        fetch(`https://pruebasaber-2.onrender.com/api/alumnos/${id}`, {
             method: "DELETE"
         })
         .then(() => {
